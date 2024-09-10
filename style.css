@@ -5,16 +5,16 @@
 
   display:inline-block;
   font-family: ui-sans-serif, system-ui, sans-serif;
-  row-gap: 1ch;
+  row-gap: 2ch;
 
   & fieldset {
     border: 1px solid ButtonFace;
     border-radius: .7ch;
-    display:inline;
+    display:inline-flex;
     flex-wrap: wrap;
     font-size: 17px;
     gap: 1ch;
-    inline-size: max-content;
+    inline-size:auto;
   }
 
   & label {
@@ -191,12 +191,13 @@
 }
 
 body {
-  background: Canvas;
+  background: rgb(78, 78, 78);
   color: CanvasText;
   color-scheme: light dark;
-  margin-left: 100px;
+  margin: 0 auto; 
   overflow-x: hidden;
-  padding: 1em 13em;
+  padding: 0em 10em;
+  
 }
 
 ::-moz-color-swatch { display: none; }
