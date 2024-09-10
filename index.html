@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Color Theory Visualizer</title>
+  <link rel="stylesheet" href="./style.css">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+<form class="ui-color-palette">
+  <input type="color" value="#00AAFF" class="complimentary">
+  <fieldset>
+    <legend>Main</legend>
+    <label><input type="radio" name="color" data-sr value="all" checked>all</label>
+    <label><input type="radio" name="color" data-sr value="primary">primary</label>
+    <label><input type="radio" name="color" data-sr value="complimentary">complimentary</label>
+    <label><input type="radio" name="color" data-sr value="split">split</label>
+    <label><input type="radio" name="color" data-sr value="shades">shades</label>
+    <label><input type="radio" name="color" data-sr value="tints">tints</label>
+  </fieldset>
+  <fieldset>
+    <legend>Analogous</legend>
+    <label><input type="radio" name="color" data-sr value="an1">0&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an2">30&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an3">60&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an4">90&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an5">120&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an6">150&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an7">180&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an8">210&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an9">240&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an10">270&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an11">300&deg;</label>
+    <label><input type="radio" name="color" data-sr value="an12">330&deg;</label>
+  </fieldset>
+  <fieldset>
+    <legend>Tetratic</legend>
+    <label><input type="radio" name="color" data-sr value="tet1">0&deg;</label>
+    <label><input type="radio" name="color" data-sr value="tet2">30&deg;</label>
+    <label><input type="radio" name="color" data-sr value="tet3">60&deg;</label>
+    <label><input type="radio" name="color" data-sr value="tet4">90&deg;</label>
+    <label><input type="radio" name="color" data-sr value="tet5">120&deg;</label>
+    <label><input type="radio" name="color" data-sr value="tet6">150&deg;</label>
+  </fieldset>
+  <fieldset>
+    <legend>Triadic</legend>
+    <label><input type="radio" name="color" data-sr value="triad1">0&deg;</label>
+    <label><input type="radio" name="color" data-sr value="triad2">30&deg;</label>
+    <label><input type="radio" name="color" data-sr value="triad3">60&deg;</label>
+    <label><input type="radio" name="color" data-sr value="triad4">90&deg;</label>
+  </fieldset>
+  <fieldset>
+    <legend>Square</legend>
+    <label><input type="radio" name="color" data-sr value="squ1">0&deg;</label>
+    <label><input type="radio" name="color" data-sr value="squ2">30&deg;</label>
+    <label><input type="radio" name="color" data-sr value="squ3">60&deg;</label>
+  </fieldset>
+  <fieldset>
+    <legend>Overlay</legend>
+    <label><input type="radio" name="overlay" data-sr value="none">none</label>
+    <label><input type="radio" name="overlay" data-sr value="ovtints" checked>tints</label>
+    <label><input type="radio" name="overlay" data-sr value="ovshades">shades</label>
+  </fieldset>
+</form>
+<!-- partial -->
+  <script  src="./script.js"></script>
+
+</body>
+</html>
