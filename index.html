@@ -2,8 +2,286 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
-  <title>CodePen - Color Theory Visualizer</title>
-  <link rel="stylesheet" href="./style.css">
+  <title>Color Visualizer</title>
+
+<style>
+body {
+      background: #f0f0f0;
+      color: #333;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      max-width: 800px;
+      width: 100%;
+    }
+    
+    .ui-color-palette {
+      --h: 200deg;
+      --s: 100%;
+      --l: 50%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 1px;
+  
+
+    
+  fieldset {
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      padding: 3px;
+      margin: 10px 0;
+      width: 100%;
+      box-sizing: border-box;
+    }
+
+    legend {
+      font-weight: bold;
+      padding: 0 5px;
+    }
+
+    label {
+      display: inline-block;
+      background: #434343;
+      border-radius: 3px;
+      padding: 5px 10px;
+      margin: 2px;
+      cursor: pointer;
+    }
+
+    label:has([type=radio]:checked) {
+      background: #3a963d;
+      color: white;
+    }
+
+    input[type="radio"] {
+      display: none;
+    }
+
+
+    #copyHexButton {
+      background-color: #4CAF50;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 10px;
+      }
+
+      fieldset {
+        padding: 5px;
+      }
+
+      label {
+        font-size: 14px;
+        padding: 3px 6px;
+      }
+    }
+
+
+  & [type=color] {
+    all: unset;
+    appearance: none;
+    aspect-ratio: 1;
+    background: 
+    var(--_g, conic-gradient(
+      hsl(var(--h) var(--s) var(--l1, 90%)) 0 30deg,
+      hsl(calc(var(--h) + 30deg) var(--s) var(--l2, 90%)) 0 60deg,
+      hsl(calc(var(--h) + 60deg) var(--s) var(--l3, 90%)) 0 90deg,
+      hsl(calc(var(--h) + 90deg) var(--s) var(--l4, 90%)) 0 120deg,
+      hsl(calc(var(--h) + 120deg) var(--s) var(--l5, 90%)) 0 150deg,
+      hsl(calc(var(--h) + 150deg) var(--s) var(--l6, 90%)) 0 180deg,
+      hsl(calc(var(--h) + 180deg) var(--s) var(--l7, 90%)) 0 210deg,
+      hsl(calc(var(--h) + 210deg) var(--s) var(--l8, 90%)) 0 240deg,
+      hsl(calc(var(--h) + 240deg) var(--s) var(--l9, 90%)) 0 270deg,
+      hsl(calc(var(--h) + 270deg) var(--s) var(--l10, 90%)) 0 300deg,
+      hsl(calc(var(--h) + 300deg) var(--s) var(--l11, 90%)) 0 330deg,
+      hsl(calc(var(--h) + 330deg) var(--s) var(--l12, 90%)) 0 360deg
+    ));
+    border-radius: 50%;
+    container-type: inline-size;
+    display: grid;
+    place-content: center;
+    place-items: center;
+    rotate: -15deg;
+    width: 70%;
+  }
+
+  /* All */
+  &:has([value=all]:checked) {
+    --l1: var(--l);
+    --l2: var(--l);
+    --l3: var(--l);
+    --l4: var(--l);
+    --l5: var(--l);
+    --l6: var(--l);
+    --l7: var(--l);
+    --l8: var(--l);
+    --l9: var(--l);
+    --l10: var(--l);
+    --l11: var(--l);
+    --l12: var(--l);
+  }
+
+  /* Primary */
+  &:has([value=primary]:checked) {
+    --l1: var(--l);
+  }
+
+  /* Complimentary */
+  &:has([value=complimentary]:checked) {
+    --l1: var(--l);
+    --l7: var(--l);
+  }
+
+  /* Analogous */
+  &:has([value=an1]:checked) { --l1: var(--l); --l2: var(--l); --l3: var(--l); }
+  &:has([value=an2]:checked) { --l2: var(--l); --l3: var(--l); --l4: var(--l); }
+  &:has([value=an3]:checked) { --l3: var(--l); --l4: var(--l); --l5: var(--l);  }
+  &:has([value=an4]:checked) { --l4: var(--l); --l5: var(--l); --l6: var(--l); }
+  &:has([value=an5]:checked) { --l5: var(--l); --l6: var(--l); --l7: var(--l); }
+  &:has([value=an6]:checked) { --l6: var(--l); --l7: var(--l); --l8: var(--l); }
+  &:has([value=an7]:checked) { --l7: var(--l); --l8: var(--l); --l9: var(--l); }
+  &:has([value=an8]:checked) { --l8: var(--l); --l9: var(--l); --l10: var(--l); }
+  &:has([value=an9]:checked) { --l9: var(--l); --l10: var(--l); --l11: var(--l); }
+  &:has([value=an10]:checked) { --l10: var(--l); --l11: var(--l); --l12: var(--l); }
+  &:has([value=an11]:checked) { --l11: var(--l); --l12: var(--l); --l1: var(--l); }
+  &:has([value=an12]:checked) { --l12: var(--l); --l1: var(--l); --l2: var(--l); }
+
+  /* Shades */
+  &:has([value=shades]:checked) {
+    --_g: conic-gradient(
+      hsl(var(--h) var(--s) var(--l)) 0deg 30deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 8.18%) 30deg 60deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 16.36%) 60deg 90deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 24.54%) 90deg 120deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 32.72%) 120deg 150deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 40.90%) 150deg 180deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 49.09%) 180deg 210deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 57.27%) 210deg 240deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 65.45%) 240deg 270deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 73.63%) 270deg 300deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 81.81%) 300deg 330deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #000 90%) 330deg 360deg
+    );
+  }
+
+  /* Split Complimentary */
+  &:has([value=split]:checked) {
+    --l1: var(--l);
+    --l6: var(--l);
+    --l8: var(--l);
+  }
+
+  /* Square */
+  &:has([value=squ1]:checked) { --l1: var(--l); --l4: var(--l); --l7: var(--l); --l10: var(--l); }
+  &:has([value=squ2]:checked) { --l2: var(--l); --l5: var(--l); --l8: var(--l); --l11: var(--l); }
+  &:has([value=squ3]:checked) { --l3: var(--l); --l6: var(--l); --l9: var(--l); --l12: var(--l); }
+
+  /* Tetratic */
+  &:has([value=tet1]:checked) { --l1: var(--l); --l3: var(--l); --l7: var(--l); --l9: var(--l); }
+  &:has([value=tet2]:checked) { --l2: var(--l); --l4: var(--l); --l8: var(--l); --l10: var(--l); }
+  &:has([value=tet3]:checked) { --l3: var(--l); --l5: var(--l); --l9: var(--l); --l11: var(--l); }
+  &:has([value=tet4]:checked) { --l4: var(--l); --l6: var(--l); --l10: var(--l); --l12: var(--l); }
+  &:has([value=tet5]:checked) { --l5: var(--l); --l7: var(--l); --l11: var(--l); --l1: var(--l); }
+  &:has([value=tet6]:checked) { --l6: var(--l); --l8: var(--l); --l12: var(--l); --l2: var(--l); }
+  
+  /* Tints */
+  &:has([value=tints]:checked) {
+    --_g: conic-gradient(
+      hsl(var(--h) var(--s) var(--l)) 0deg 30deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 8.18%) 30deg 60deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 16.36%) 60deg 90deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 24.54%) 90deg 120deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 32.72%) 120deg 150deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 40.90%) 150deg 180deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 49.09%) 180deg 210deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 57.27%) 210deg 240deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 65.45%) 240deg 270deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 73.63%) 270deg 300deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 81.81%) 300deg 330deg,
+      color-mix(in srgb, hsl(var(--h) var(--s) var(--l)), #fff 90%) 330deg 360deg
+    );
+  }
+
+  /* Overlay */
+  &:has([value=ovshades]:checked) { --_o: 0%; }
+  &:has([value=ovtints]:checked) { --_o: 100%; }
+  &:has([value=ovshades]:checked),
+  &:has([value=ovtints]:checked) {
+    & [type=color]::after {
+      border-radius: 50%;
+      content: "";
+      display: block;
+      aspect-ratio: 1;
+      background: radial-gradient(
+        circle at center,
+        hsla(0, 0%, var(--_o), .9) 0 5cqi,
+        hsla(0, 0%, var(--_o), .8) 5cqi 10cqi,
+        hsla(0, 0%, var(--_o), .7) 10cqi 15cqi,
+        hsla(0, 0%, var(--_o), .6) 15cqi 20cqi,
+        hsla(0, 0%, var(--_o), .5) 20cqi 25cqi,
+        hsla(0, 0%, var(--_o), .4) 25cqi 30cqi,
+        hsla(0, 0%, var(--_o), .3) 30cqi 35cqi,
+        hsla(0, 0%, var(--_o), .2) 35cqi 40cqi,
+        hsla(0, 0%, var(--_o), .1) 40cqi 45cqi,
+        #0000 45cqi 100%
+      );
+      grid-area: 1 / -1;
+      width: 100cqi;
+    }
+  }
+
+  /* Triadic */
+  &:has([value=triad1]:checked) { --l1: var(--l); --l5: var(--l); --l9: var(--l); }
+  &:has([value=triad2]:checked) { --l2: var(--l); --l6: var(--l); --l10: var(--l); }
+  &:has([value=triad3]:checked) { --l3: var(--l); --l7: var(--l); --l11: var(--l); }
+  &:has([value=triad4]:checked) { --l4: var(--l); --l8: var(--l); --l12: var(--l); }
+}
+
+body {
+  background: rgb(78, 78, 78);
+  color: CanvasText;
+  color-scheme: light dark;
+  margin: 0 auto; 
+  overflow-x: hidden;
+  padding: 0em 10em;
+  
+}
+
+::-moz-color-swatch { display: none; }
+::-webkit-color-swatch { display: none; }
+
+[data-sr] { 
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  height: 1px;
+  left: 0;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+</style>
+
 
 </head>
 <body>
@@ -63,8 +341,65 @@
     <label><input type="radio" name="overlay" data-sr value="ovshades">shades</label>
   </fieldset>
 </form>
-<!-- partial -->
-  <script  src="./script.js"></script>
+
+<script>
+
+const color = document.querySelector('input[type="color"]');
+
+// Function to convert HEX to HSL
+function hexToHSL(hex) {
+  let r = parseInt(hex.substring(1, 3), 16);
+  let g = parseInt(hex.substring(3, 5), 16);
+  let b = parseInt(hex.substring(5, 7), 16);
+  r /= 255;
+  g /= 255;
+  b /= 255;
+  const max = Math.max(r, g, b);
+  const min = Math.min(r, g, b);
+  let h, s, l = (max + min) / 2;
+
+  if (max === min) {
+      h = s = 0;
+  } else {
+      const d = max - min;
+      s = l > 0.5 ? d / (2 - max - min) : d / (max + min);
+      switch (max) {
+          case r: h = (g - b) / d + (g < b ? 6 : 0); break;
+          case g: h = (b - r) / d + 2; break;
+          case b: h = (r - g) / d + 4; break;
+      }
+      h /= 6;
+  }
+  return [Math.round(h * 360) + 'deg', Math.round(s * 100) + '%', Math.round(l * 100) + '%'];
+}
+
+const form = document.querySelector('.ui-color-palette');
+color.addEventListener('input', () => {
+  const [h, s, l] = hexToHSL(color.value);
+  form.style.setProperty('--h', h);
+  form.style.setProperty('--s', s);
+  form.style.setProperty('--l', l);
+});
+
+// Function to copy the HEX value to the clipboard
+function copyHexToClipboard() {
+  navigator.clipboard.writeText(color.value).then(() => {
+    alert('HEX value copied: ' + color.value); // Alert the user that the HEX has been copied
+  }).catch(err => {
+    console.error('Failed to copy: ', err);
+  });
+}
+
+// Adding a button to copy the HEX value
+const copyButton = document.createElement('button');
+copyButton.textContent = 'Copy HEX';
+form.appendChild(copyButton);
+
+// Event listener for the copy button
+copyButton.addEventListener('click', copyHexToClipboard);
+
+
+</script>
 
 </body>
 </html>
